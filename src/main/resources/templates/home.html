@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/defaultLayout}"> 
+<head>    
+  <title>Index Page</title>
+  <th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}" />      
+  </th:block>
+</head>     
+<body>    
+  <main class="container max-w-screen-lg mx-auto" layout:fragment="content">
+    <div class="h-12 bg-gray-50">
+      
+    </div>
+    <section>
+        <div class="relative flex justify-between items-center">
+          <form method="">
+            <div class="">
+              <select>
+                <option value="통합검색">통합검색</option>
+                <option value="논문검색">논문검색</option>
+                <option value="소장도서"></option>
+                <option></option>
+              </select>
+            </div>
+          <input class="w-full px-4 py-2 bg-gray-50 hover:bg-gray-100 focus:bg-white  border border-gray-400 ring-0 focus:ring-transparent rounded-lg" type="text" placeholder="도서명, 작가이름을 입력해주세요."/>
+          <button class="absolute right-0 top-50 mr-4"
+          type="submit">
+          검색
+          </button>
+          </form>
+        </div>     
+    </section>
+    <div>
+      <div class="flex gap-4">
+        <a></a>
+      </div>
+    </div>
+  </main>
+  <footer>
+
+  </footer>
+</body>    
+</html>  

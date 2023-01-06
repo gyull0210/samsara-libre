@@ -1,0 +1,17 @@
+# thymeleaf
+spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    check-template-location: true
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/samsaradb?characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Seoul
+    username: root
+    password: q1w2e3r4t5
+    driver-class-name: com.mysql.cj.jdbc.Driver 
+  mvc:
+    static-path-pattern: "/static/**"
+mybatis:
+  mapper-locations:
+  - classpath:/mapper/**/*.xml

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>thymeleaf layout</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+</head>
+<body class="relative min-w-[425px] overflow-x-hidden">
+    <!-- header fragment 사용 -->
+    <th:block th:replace="fragments/default/header :: headerFragment"></th:block>
+    <!-- sidebar fragment 사용-->
+    <th:block th:replace="fragments/default/sidebar :: sidebarFragment"></th:block>
+    <!-- content fragment 사용 -->
+    <th:block layout:fragment="content"></th:block>
+    <!-- footer fragment 사용 -->
+    <th:block th:replace="fragments/default/footer :: footerFragment"></th:block>
+</body>
+<script>
+    const handleSidebar = () => {
+        let sidebar = document.getElementById("sidebar");
+        console.dir(sidebar);
+        if(sidebar.classList.contains("translate-x-[300px]")){
+            sidebar.classList.remove("hidden");
+            sidebar.classList.remove("translate-x-[300px]");
+        } else {
+            sidebar.classList.add("translate-x-[300px]");
+            sidebar.classList.add("hidden");
+        }
+        //sidebar.style("transform: translateX(0px)")
+    }
+
+</script>
+</html>
