@@ -1,6 +1,6 @@
 ---
 name: FEAT
-about: Suggest an idea for this project
+about: 기능 추가
 title: ''
 labels: ''
 assignees: ''

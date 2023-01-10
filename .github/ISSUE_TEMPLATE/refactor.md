@@ -1,6 +1,6 @@
 ---
-name: FIX
-about: 버그 수정
+name: REFACTOR
+about: 리팩토링
 title: ''
 labels: ''
 assignees: ''

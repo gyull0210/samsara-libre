@@ -1,6 +1,6 @@
 ---
 name: DOCS
-about: Describe this issue template's purpose here.
+about: 문서 추가, 삭제, 수정
 title: ''
 labels: ''
 assignees: ''

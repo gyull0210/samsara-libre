@@ -1,6 +1,6 @@
 ---
 name: STYLE
-about: Describe this issue template's purpose here.
+about: 비즈니스 로직 제외한 UI 스타일 변경
 title: ''
 labels: ''
 assignees: ''
