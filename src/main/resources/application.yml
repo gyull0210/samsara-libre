@@ -1,5 +1,7 @@
 # thymeleaf
 spring:
+  profiles:
+    include: secret
   thymeleaf:
     prefix: classpath:templates/
     suffix: .html
@@ -15,3 +17,5 @@ spring:
 mybatis:
   mapper-locations:
   - classpath:/mapper/**/*.xml
+
+  

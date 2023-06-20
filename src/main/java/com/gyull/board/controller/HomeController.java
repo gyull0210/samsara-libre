@@ -23,8 +23,19 @@ public class HomeController {
     return "signup";
   }
 
-  @GetMapping("/admin/dashboard")
-  public String dashboard(){
-    return "admin/dashboard";
+  @GetMapping("/community/community")
+  public String Community(){
+    return "community/community";
   }
+
+  @GetMapping("/mylibrary/rent")
+  public String Rent(){
+    return "mylibrary/rent";
+  }
+
+  @GetMapping("/test/home")
+  public String test(){
+    return "test/home";
+  }
+
 }

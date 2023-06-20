@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <!-- sidebar -->
+  <aside class="fixed z-30 w-56 h-full overflow-y-scroll transition duration-300 ease-out -translate-x-56 bg-gray-900 lg:translate-x-0 pt-14" 
+  :class="openSidebar ? 'translate-x-0':'-translate-x-56'"
+  th:fragment="sidebarFragment"
+  >
+  <div class="px-6 pt-4">
+    <ul class="flex flex-col space-y-2">
+      <li class="relative text-gray-500 hover:text-white focus-within:text-white">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
+          <i class="fa-solid fa-table-columns"></i>
+        </div>
+        <a href="/admin/dashboard"
+          class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"        
+        >대시보드
+        </a>
+          </li>
+          <li class="" x-data="{ open: false }">
+            <div
+              class="relative flex items-center justify-between text-gray-500 hover:text-white focus-within:text-white"
+              x-on:click="open = ! open"
+            >
+              <div class="flex items-center w-full">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+                >
+                  <i class="fa-solid fa-book-open-reader"></i>
+                </div>
+                <a href="#"
+                  class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+                  >출납관리</a>
+              </div>
+              <button class="absolute right-0 flex items-center p-1" tabindex="-1">
+                <i class="fa-solid fa-chevron-down fa-xs"></i>
+              </button>
+            </div>
+            <div class="pt-2 pl-4" x-show="open" x-transition>
+              <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
+                <li>
+                  <a
+                    href="/admin/borrow"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >대출</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/receive"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >반납</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/reservation"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >예약</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/overdue"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >연체관리</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="" x-data="{ open: false }">
+            <div
+              class="relative flex items-center justify-between text-gray-500 hover:text-white focus-within:text-white"
+              x-on:click="open = ! open"
+            >
+              <div class="flex items-center w-full">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+                >
+                  <i class="fa-solid fa-book"></i>
+                </div>
+                <a href="#"
+                  class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+                  >장서관리</a>
+              </div>
+              <button class="absolute right-0 flex items-center p-1" tabindex="-1">
+                <i class="fa-solid fa-chevron-down fa-xs"></i>
+              </button>
+            </div>
+            <div class="pt-2 pl-4" x-show="open" x-transition>
+              <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
+                <li>
+                  <a
+                    href="/admin/book/search"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >장서조회</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/book/create"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >장서등록</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/book/maintenance"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >유지보수</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/book/request"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >희망도서</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="relative text-gray-500 hover:text-white focus-within:text-white" x-data="{ open: false }">
+            <div
+              class="relative flex items-center justify-between text-gray-500 hover:text-white focus-within:text-white"
+              x-on:click="open = ! open"
+            >
+              <div class="flex items-center w-full">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+                >
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <a href="#"
+                  class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+                  >회원관리</a>
+              </div>
+              <button class="absolute right-0 flex items-center p-1" tabindex="-1">
+                <i class="fa-solid fa-chevron-down fa-xs"></i>
+              </button>
+            </div>
+            <div class="pt-2 pl-4"  x-show="open" x-transition> 
+              <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
+                <li>
+                  <a
+                    href="/admin/user/search"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >회원조회</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/user/create"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >회원등록</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/user/restricted"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >제재된 회원</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/user/setting"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >회원설정</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="relative text-gray-500 hover:text-white focus-within:text-white" x-data="{ open: false }">
+            <div
+              class="relative flex items-center justify-between text-gray-500 hover:text-white focus-within:text-white"
+              x-on:click="open = ! open"
+            >
+              <div class="flex items-center w-full">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+                >
+                  <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <a href="#"
+                  class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+                  >통계</a>
+              </div>
+              <button class="absolute right-0 flex items-center p-1" tabindex="-1">
+                <i class="fa-solid fa-chevron-down fa-xs"></i>
+              </button>
+            </div>
+            <div class="pt-2 pl-4" x-show="open" x-transition>
+              <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
+                <li>
+                  <a
+                    href="#"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >출납 통계</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >보유도서 현황</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >이용자 현황</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="relative text-gray-500 hover:text-white focus-within:text-white" x-data="{ open: false }">
+            <div
+              class="relative flex items-center justify-between text-gray-500 hover:text-white focus-within:text-white"
+              x-on:click="open = ! open"
+            >
+              <div class="flex items-center w-full">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+                >
+                  <i class="fa-solid fa-comments"></i>
+                </div>
+                <a href="#"
+                  class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+                  >게시판</a>
+              </div>
+              <button class="absolute right-0 flex items-center p-1" tabindex="-1">
+                <i class="fa-solid fa-chevron-down fa-xs"></i>
+              </button>
+            </div>
+            <div class="pt-2 pl-4" x-show="open" x-transition>
+              <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
+                <li>
+                  <a
+                    href="/admin/notice"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >공지사항</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/board"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >관리자게시판</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/admin/qna"
+                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+                    >Q&A</a
+                  >
+                </li>                    
+              </ul>
+            </div>
+          </li>              
+          <li class="relative text-gray-500 hover:text-white focus-within:text-white">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+            >
+              <i class="fa-solid fa-life-ring"></i>
+            </div>
+            <a
+              href="/admin/support"
+              class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+              >지원 및 문의</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="px-6 pt-8">
+        <hr class="border-gray-700" />
+      </div>
+      <div class="px-6 pt-4 pb-8">
+        <ul>
+          <li class="relative text-gray-500 hover:text-white focus-within:text-white">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+            >
+              <i class="fa-solid fa-gear"></i>
+            </div>
+            <a
+              href="/admin/setting"
+              class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+              >설정</a
+            >
+          </li>
+          <li class="relative text-gray-500 hover:text-white focus-within:text-white">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+            >
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <a
+              href="/admin/notification"
+              class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
+              >알림</a>
+          </li>             
+        </ul>
+      </div>
+      <div class="pl-6 pr-4 py-4 bg-[#232529] flex items-center justify-between">
+        <div class="flex items-center">
+          <div
+            class="relative w-8 h-8 rounded-full before:absolute before:w-2 before:h-2 before:bg-green-500 before:rounded-full before:right-0 before:bottom-0 before:ring-1 before:ring-white"
+          >
+            <img
+              class="rounded-full"
+              src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+              alt=""
+            />
+          </div>
+          <div class="flex flex-col pl-3">
+            <div class="text-sm text-gray-50">Jane Doeson</div>
+            <span class="text-xs text-[#acacb0] font-light tracking-tight">
+              janedoeson@gmail.com
+            </span>
+          </div>
+        </div>
+        <button
+          class="text-gray-400 bg-gray-700 rounded focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
+        >
+          <svg class="w-4 h-4 stroke-current" fill="none" viewBox="0 0 24 24">
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M15.25 10.75L12 14.25L8.75 10.75"
+            ></path>
+          </svg>
+        </button>
+      </div>
+  </aside>
+</html>

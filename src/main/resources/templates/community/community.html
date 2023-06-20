@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/defaultLayout}"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
+<head>    
+  <title>삼사라 도서관</title>
+  <th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}" />
+    <script src="https://kit.fontawesome.com/f31fa860a2.js" crossorigin="anonymous"></script>      
+  </th:block>
+</head>     
+<body>    
+  <main class="container max-w-screen-lg mx-auto" layout:fragment="content">
+    <div class="h-12 bg-gray-50">
+      
+    </div>
+    <section>
+        <div class="relative flex items-center justify-between">
+          <form method="" class="inline-block">
+            <div class="relative">
+              <select class="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500 ring-0 focus:ring-transparent">
+                <option value="통합검색">통합검색</option>
+                <option value="논문검색">논문검색</option>
+                <option value="소장도서">소장도서</option>
+                <option></option>
+              </select>
+            </div>
+          <input class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:border-gray-500 hover:bg-gray-200 focus:bg-white ring-0 focus:ring-transparent" type="text" placeholder="도서명, 작가이름을 입력해주세요."/>
+          </form>
+        </div>     
+    </section>
+    <section class="mt-52">
+      <table class="w-full">
+        <thead class="text-white border rounded-l-lg rounded-r-lg bg-sky-600">
+          <tr>
+            <th class="py-2" style="width:15%">글번호</th>
+            <th class="py-2" style="width:45%">제목</th>
+            <th class="py-2" style="width:10%">등록일</th>
+            <th class="py-2" style="width:15%">작성자</th>
+            <th class="py-2" style="width:15%">조회수</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr class="border-b">
+            <td class="py-2"><i class="fa-solid fa-microphone"></i></td>
+            <td class="py-2">예제입니다</td>
+            <td class="py-2">2023.01.10</td>
+            <td class="py-2">시민</td>
+            <td class="py-2">23</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2">1</td>
+            <td class="py-2">예제입니다</td>
+            <td class="py-2">2023.01.10</td>
+            <td class="py-2">시민</td>
+            <td class="py-2">23</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2">1</td>
+            <td class="py-2">예제입니다</td>
+            <td class="py-2">2023.01.10</td>
+            <td class="py-2">시민</td>
+            <td class="py-2">23</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="flex items-center justify-center mt-10 space-x-4">
+        <ol class="flex justify-center gap-1 text-xs font-medium">
+          <li>
+            <a
+              href="#"
+              class="inline-flex items-center justify-center w-8 h-8 border border-gray-200 rounded-full"
+            >
+              <span class="sr-only">Prev Page</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-3 h-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </li>
+        
+          <li>
+            <a
+              href="#"
+              class="block w-8 h-8 leading-8 text-center border border-gray-200 rounded-full"
+            >
+              1
+            </a>
+          </li>
+        
+          <li
+            class="block w-8 h-8 leading-8 text-center text-white rounded-full border-sky-600 bg-sky-600"
+          >
+            2
+          </li>
+        
+          <li>
+            <a
+              href="#"
+              class="block w-8 h-8 leading-8 text-center border border-gray-200 rounded-full"
+            >
+              3
+            </a>
+          </li>
+        
+          <li>
+            <a
+              href="#"
+              class="block w-8 h-8 leading-8 text-center border border-gray-200 rounded-full"
+            >
+              4
+            </a>
+          </li>
+        
+          <li>
+            <a
+              href="#"
+              class="inline-flex items-center justify-center w-8 h-8 border border-gray-200 rounded-full"
+            >
+              <span class="sr-only">Next Page</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-3 h-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </li>
+        </ol>
+        
+      </div>
+    </section>
+  </main>
+  <footer>
+
+  </footer>
+  <script>
+  
+  </script>
+</body>    
+</html>  

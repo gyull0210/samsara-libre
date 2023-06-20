@@ -19,9 +19,9 @@ layout:decorate="~{layout/defaultLayout}">
       </div>
       <form th:action="@{/account/signup}" method="post">
         <div class="mb-4">
-          <label htmlFor="mem_email">
-            <span class="">이메일<span class="text-red-400 ">*</span></span>
-            <input id="mem_email" class="w-full px-6 py-2 border border-gray-400 rounded-lg form-input focus:border-sky-400 focus:ring focus:ring-sky-400" type="text" 
+          <label htmlFor="mem_id">
+            <span class="">아이디<span class="text-red-400 ">*</span></span>
+            <input id="mem_id" class="w-full px-6 py-2 border border-gray-400 rounded-lg form-input focus:border-sky-400 focus:ring focus:ring-sky-400" type="text" 
             onchange="valid();"
             />
           </label>
@@ -46,6 +46,12 @@ layout:decorate="~{layout/defaultLayout}">
           <label htmlFor="mem_repw">
             <span class="">비밀번호 확인<span class="text-red-400 ">*</span></span>
             <input id="mem_repw" class="w-full px-6 py-2 border border-gray-400 rounded-lg forms-input focus:border-sky-400 focus:ring focus:ring-sky-400" type="password" />
+          </label>
+        </div>
+        <div class="mb-4">
+          <label htmlFor="mem_email">
+            <span class="">이메일<span class="text-red-400 ">*</span></span>
+            <input id="mem_email" class="w-full px-6 py-2 border border-gray-400 rounded-lg forms-input focus:border-sky-400 focus:ring focus:ring-sky-400" type="email" />
           </label>
         </div>
         <div class="mb-4">
@@ -86,7 +92,7 @@ layout:decorate="~{layout/defaultLayout}">
   </footer>
   <script>
 
-    let email = document.getElementById("#mem_email").value;
+    let email = document.getElementById("#mem_id").value;
     const email_valid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     
     const valid = (e) => {

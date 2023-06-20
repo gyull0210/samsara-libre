@@ -22,14 +22,16 @@
         let sidebar = document.getElementById("sidebar");
         console.dir(sidebar);
         if(sidebar.classList.contains("translate-x-[300px]")){
-            sidebar.classList.remove("hidden");
+            //sidebar.classList.remove("hidden");
             sidebar.classList.remove("translate-x-[300px]");
         } else {
             sidebar.classList.add("translate-x-[300px]");
-            sidebar.classList.add("hidden");
+            //sidebar.classList.add("hidden");
         }
         //sidebar.style("transform: translateX(0px)")
     }
 
 </script>
+<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="customScript"></th:block>
 </html>

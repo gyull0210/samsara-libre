@@ -2,10 +2,11 @@
 module.exports = {
   content: ['./src/main/resources/templates/**/*.html'],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/line-clamp')
   ],
 }

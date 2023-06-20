@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/adminLayout}"> 
+<head>    
+  <title>회원등록</title>
+    <link rel="stylesheet" th:href="@{/static/css/common.css}" layout:fragment="css"/>   
+    <script th:src="@{/static/js/script.js}" ></script>
+</head>
+<body>
+  <div class="flex flex-row max-w-screen-xl conatiner mx-auto" layout:fragment="content">
+    <aside class="">
+      <nav class="">
+        <div class="flex flex-col">
+          <a class="px-6 py-2 bg-gray-100 border border-gray-400">회원조회</a>
+          <a class="px-6 py-2 bg-gray-100 border border-gray-400">회원등록</a>
+        </div>
+      </nav>
+    </aside>
+  <main class="container max-w-screen-lg mx-auto">
+    <div class="px-4 py-4 bg-gray-50">
+      <div class="w-full flex flex-col items-stretch justify-between">
+        <form method="post" class="flex flex-col justify-center px-4 py-4" onsubmit="return false;">
+          <div class="flex flex-col justify-center items-center">
+            <div class="mb-4">
+              <label for="bookCover">
+                <div class="flex items-center justify-center w-[150px] h-[200px] rounded-lg bg-gray-300">이미지 등록</div>
+              </label>
+              <input class="hidden" id="bookCover" type="file">
+            </div>
+            <div class="flex mb-4">
+              <label for="userNum">회원번호</label>
+              <input id="userNum" class="w-full flex-1" type="text"/>              
+            </div>
+            <div class="mb-4">
+              <label for="name">이름</label>
+              <input id="name" class="w-full flex-1" type="text"/>
+            </div>
+            <div class="mb-4">
+              <label for="phoneNum">연락처</label>
+              <input id="phoneNum" class="w-full flex-1" type="text"/>
+            </div>
+            <div class="mb-4">
+              <label for="password">비밀번호</label>
+              <input id="password" class="w-full flex-1" type="text"/>
+            </div>            
+            <div class="mb-4">
+              <label for="place">주소</label>
+              <input class="" id="place" type="text">
+            </div>
+            <div class="mb-4">
+              <label for="isbn">이용제한</label>
+              <input class="" id="isbn" type="text">
+            </div>
+            <div class="mb-4">
+              <label for="isbn">이용대상</label>
+              <input class="" id="isbn" type="text">
+            </div>
+            <div class="mb-4">
+              <label for="isbn">대출가능여부</label>
+              <input class="" id="isbn" type="text">
+            </div>           
+            <button class="ml-2 flex-none px-6 py-2 text-white bg-sky-400" type="submit">등록</button>
+          </div>         
+        </form> 
+    </div>
+    <section>
+      
+    </section>
+    <div>
+      <div class="flex gap-4">
+        <a></a>
+      </div>
+    </div>
+  </main>
+  </div>
+  <div id="modal" class="">
+    <dialog>
+      내용
+    </dialog>
+  </div>
+  <script>
+    
+  </script>
+</body>    
+</html>
