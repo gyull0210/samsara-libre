@@ -19,3 +19,7 @@ body {
   scrollbar-width: none;  /* Firefox */
   -webkit-tap-highlight-color:transparent
 }
+
+table tr:focus {
+  @apply bg-sky-600 text-white
+}

@@ -1,5 +1,7 @@
 package com.gyull.board.domain.api.publicLib;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,11 +11,11 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class BookRequest {
+public class SeojiDetailReqDto {
   private String srchTarget;
   private String kwd;
   private Integer pageNum;
-  private Integer PageSize;
+  private Integer pageSize;
   private String systemType;
   private String category;
   private String sort;
@@ -30,4 +32,8 @@ public class BookRequest {
   private String v2;
   private String v3;
   private String v4;
+
+  private String and1;
+  private String and2;
+  private String and3;
 }

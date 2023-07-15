@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class BookDetailRequest {
+public class SeojiReqDto {
   private String srchTarget;
   private String kwd;
   private Integer pageNum;

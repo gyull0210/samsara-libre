@@ -1,0 +1,103 @@
+Project Book_Management {
+  database_type: 'MySQL'
+  Note: '''
+    # Book Management Database
+    **도서관리시스템을 위한 DB설계**
+  '''
+}
+Table user as U {
+  user_id int [pk, increment]
+  id varchar
+  password varchar
+  name varchar
+  email varchar
+  postcode varchar
+  address varchar
+  detailAddr varchar
+  extraAddr varchar
+  role varchar
+  borrowlimit int
+  borrowCount int
+  overdueCount int
+  mannerCount int
+  created_at datetime
+  modifed_at datetime
+  isLocked boolean
+  isBlocked boolean
+  isWithdraw boolean
+  note: "table 'users' contains user information"
+}
+Table Withdraw {
+  id int
+  user_idx int
+  user_id varchar
+  created_at
+  state varchar
+}
+Table book {
+  book_id int [pk]
+  bookNum varchar 
+  class_code varchar [note: "분류기호"]
+  author_code varchar
+  volume varchar
+  copy varchar
+  attachment varchar
+  location varchar
+  checkin_status varchar
+  created_at datetime [default: `now()`, note: "created time"]
+  modified_at datetime [default: `now()`, note: "modified time"]
+  note: "table 'books' contains book information"
+}
+Table book_info {
+  id int
+  isbn varchar
+  title varchar
+  author varchar
+  publisher varchar
+  price varchar
+  discount varchar
+  description varchar
+  pub_date date
+  created_at datetime [default: `now()`, note: "created time"]
+  modified_at datetime [default: `now()`, note: "modified time"]
+}
+Table borrow {
+  id int [pk]
+  user_id int
+  book_id int
+  created_at datetime
+  modifed_at datetime
+  recieved_at datetime
+}
+Table conversation {
+  id int [pk]
+  book_id int
+  description varchar
+  status varchar
+  created_at datetime
+  modifed_at datetime
+}
+Table board {
+  id int [pk]
+  title varchar
+  user_id varchar
+  content varchar
+  attachment varchar
+  view int
+}
+Table reply {
+  id int [pk]
+  board_id int
+  user_id varchar
+  comment varchar
+  created_at datetime
+}
+Table qna {
+  id int [pk]
+  title varchar
+  user_id varchar
+  content varchar
+  reply_id varchar
+}
+
+

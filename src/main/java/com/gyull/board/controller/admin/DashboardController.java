@@ -17,6 +17,12 @@ public class DashboardController {
     return "admin/book/createBook";
   }
 
+  @GetMapping("/admin/book/createBookTest")
+  public String createBookTest(){
+
+    return "admin/book/createBookTest";
+  }
+
   @GetMapping("/admin/book/searchBook")
   public String searchBook(){
 
@@ -46,4 +52,5 @@ public class DashboardController {
     
     return "admin/setting/defaultSetting";
   }
+
 }

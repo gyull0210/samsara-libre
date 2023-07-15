@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gyull.board.repository.book.UserRepository">
+  <select id="search" resultType="com.gyull.board.domain.book.Book">
+    SELECT * FROM BOOK 
+    WHERE '제목' = '%keyword%'
+    OR
+    WHERE '작가' = '%keyword%'
+    OR
+    WHERE '출판사' = '%keyword%'
+    OR
+    WHERE 'ISBN' = '%keyword%'
+    OR
+    WHERE '소장위치' = '%keyword%';
+  </select>
+  <select id="searchDetail" resultType="com.gyull.board.domain.book.Book">
+    select * from user where id = #{id}
+  </select>
+</mapper>

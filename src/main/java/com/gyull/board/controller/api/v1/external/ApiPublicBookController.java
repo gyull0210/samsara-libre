@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-//import com.gyull.board.service.api.publicLib.PublicBookService;
-import com.gyull.board.domain.api.publicLib.BookRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.gyull.board.domain.api.publicLib.SeojiDetailReqDto;
+import com.gyull.board.domain.api.publicLib.SeojiIsbnReqDto;
+import com.gyull.board.service.api.publicLib.PublicBookService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,14 +21,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApiPublicBookController {
 
-  //@Autowired
-  //PublicBookService publicBookService;
+  @Autowired
+  PublicBookService publicBookService;
 
-  // @GetMapping("/search")
-  // public ResponseEntity<?> search(BookRequest bookreq){
+  @PostMapping("/search")
+  public ResponseEntity<?> search(SeojiDetailReqDto seojiDetailReqDto){
 	  
-	//   return new ResponseEntity<>(publicBookService.searchDetail(bookreq), HttpStatus.OK);
-	// }
+	  return new ResponseEntity<>(publicBookService.search(seojiDetailReqDto), HttpStatus.OK);
+	}
 
   // @GetMapping("/detailSearch")
   // public ResponseEntity<?> searchDetail(BookRequest bookreq){
@@ -33,9 +36,9 @@ public class ApiPublicBookController {
 	//   return new ResponseEntity<>(publicBookService.searchDetail(bookreq), HttpStatus.OK);
 	// }
 
-  // @GetMapping("/searchIsbn")
-  // public ResponseEntity<?> searchIsbn(BookRequest bookreq){
+  @PostMapping("/searchIsbn")
+  public ResponseEntity<?> searchIsbn(SeojiIsbnReqDto seojiIsbnReqDto) throws JsonMappingException, JsonProcessingException{
 	  
-	//   return new ResponseEntity<>(publicBookService.searchDetail(bookreq), HttpStatus.OK);
-	// }
+	  return new ResponseEntity<>(publicBookService.searchIsbn(seojiIsbnReqDto), HttpStatus.OK);
+	}
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lagn="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/adminLayout}"> 
 <head>
     <meta charset="UTF-8" />
     <title>기본 설정</title>
@@ -20,7 +21,7 @@
           설정
         </div>
         <div class="p-4 font-semibold bg-white border border-transparent rounded-md shadow-md text-medium shadow-gray-200/80">
-          <div class="flex gap-6">
+          <div class="flex flex-col lg:flex-row space-x-6">
             <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">기본 설정</div>
             <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">대출 설정</div>
             <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">회원 설정</div>

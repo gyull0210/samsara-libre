@@ -2,9 +2,8 @@ package com.gyull.board.controller.api.v1.external;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gyull.board.domain.api.naver.SearchDetailReqDto;
@@ -21,16 +20,16 @@ public class ApiNaverBookController {
 	@Autowired
 	NaverBookService naverBookService;
 	
-	@GetMapping("/search")
-	public ResponseEntity<?> search(@RequestParam String title, @RequestParam Integer start){
+	@PostMapping("/search")
+	public ResponseEntity<?> search(SearchReqDto searchReqDto){
 	  
-	  return new ResponseEntity<>(naverBookService.search(title, start), HttpStatus.OK);
+	  return new ResponseEntity<>(naverBookService.search(searchReqDto), HttpStatus.OK);
 	}
 
-	// @GetMapping("/searchDetail")
-	// public ResponseEntity<?> searchDetail(SearchDetailReqDto searhDetailReqDto){
+	@PostMapping("/searchDetail")
+	public ResponseEntity<?> searchDetail(SearchDetailReqDto searchDetailReqDto){
 	  
-	//   return new ResponseEntity<>(naverBookService.searchDetail(searchDetailReqDto), HttpStatus.OK);
-	// }
+	  return new ResponseEntity<>(naverBookService.searchDetail(searchDetailReqDto), HttpStatus.OK);
+	}
   
 }

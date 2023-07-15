@@ -1,0 +1,127 @@
+<div class="inset-0 w-full h-full max-w-screen-lg absolute z-50 p-4 border shadow bg-white rounded-lg top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]" 
+        :class="openIsbnModal ? '':'block'" x-show="openIsbnModal" x-cloak
+        id="searchBookModal">
+          <div class="relative flex flex-col justify-between h-full" x-data="searchSeoji()">
+            <div class="py-2 text-sm font-semibold border-b border-gray-300">
+                  국립중앙도서관 서지 정보 검색
+            </div>
+            <div class="flex flex-col overflow-y-auto h-full">
+              <div class="my-4"> 
+                <form class="flex flex-col gap-4" onSubmit="return false;">
+                  <div class="flex gap-4">
+                    <select class="border border-gray-300 rounded-md shadow">
+                      <option value="">전체</option>
+                      <option value="">제목</option>
+                      <option value="">저자</option>
+                      <option value="">발행자</option>
+                      <option value="">키워드</option>
+                    </select>
+                    <input id="isbn_keyword" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow" 
+                    type="text" placeholder="검색어를 입력하세요">
+                  </div>
+                  <div class="flex gap-4 items-center">
+                    <select class="border border-gray-300 rounded-md shadow">
+                      <option value="isbn">ISBN</option>
+                      <option value="issn">ISSN</option>
+                    </select>
+                    <input id="n_keyword" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow" 
+                    type="text" placeholder="검색어를 입력하세요">
+                  </div>
+                  <div class="flex justify-center gap-4">
+                    <button class="px-4 py-2 text-white bg-gray-600 rounded-lg whitespace-nowrap">검색조건 초기화</button>
+                    <button class="px-4 py-2 text-white bg-gray-600 rounded-lg whitespace-nowrap" 
+                      @click="changeInput(); fetchIsbn(); currentPage = 1">검색</button>
+                  </div>
+                </form>
+              </div>
+              <template x-if="books !== null">
+                <div class="relative mb-4 w-full">
+                  <div class="relative overflow-scroll">
+                    <table class="w-full rounded-md table-auto">
+                      <thead class="overflow-x-auto bg-gray-200">
+                        <tr>
+                          <th class="p-2 whitespace-nowrap"></th>
+                          <th class="px-6 py-2 whitespace-nowrap">분야</th>
+                          <th class="px-6 py-2 whitespace-nowrap">도서명</th>
+                          <th class="px-6 py-2 whitespace-nowrap">저자</th>
+                          <th class="px-6 py-2 whitespace-nowrap">출판사</th>
+                          <th class="px-6 py-2 whitespace-nowrap">출판년도</th>
+                          <th class="px-6 py-2 whitespace-nowrap">ISBN</th>
+                          <th class="px-6 py-2 whitespace-nowrap">부가기호</th>
+                          <th class="px-6 py-2 whitespace-nowrap">가격</th>
+                        </tr>
+                      </thead>                 
+                      <tbody>
+                        <template x-for="book in books">
+                          <tr class="border-b border-dashed hover:bg-gray-100">                     
+                            <td class="p-2">
+                              <div class="flex items-center">
+                                <input class="w-4 h-4" type="radio" x-model="book.selected" @change="updateSelectedBook(book)">
+                              </div>
+                            </td>
+                            <td class="px-6 py-2 whitespace-nowrap" x-text="book.SUBJECT"></td>
+                            <td class="px-6 py-2 whitespace-nowrap " x-text="book.TITLE"></td>
+                            <td class="px-6 py-2 whitespace-nowrap" x-text="book.AUTHOR"></td>
+                            <td class="px-6 py-2 whitespace-nowrap" x-text="book.PUBLISHER"></td>
+                            <td class="px-6 py-2 whitespace-nowrap" x-text="book.PUBLISH_PREDATE"></td>
+                            <td class="px-6 py-2 whitespace-nowrap" x-text="book.EA_ISBN"></td>
+                            <td class="px-6 py-2 whitespace-nowrap" x-text="book.EA_ADD_CODE"></td>
+                            <td class="px-6 py-2 whitespace-nowrap" x-text="book.PRE_PRICE"></td>
+                          </tr>
+                        </template>
+                        <template x-if="books.length === 0">
+                          <tr>
+                            <td class="py-4" colspan="7">
+                              <div class="text-gray-500 w-full h-full flex justify-center items-center mx-auto">
+                                <i class="fa-solid fa-triangle-exclamation fa-lg"></i>
+                                <span class="">검색결과가 없습니다.</span>
+                              </div>
+                            </td>
+                          </tr>                   
+                        </template>
+                      </tbody>
+                    </table>               
+                  </div>
+                  <template x-if="books.length !== 0">
+                  <div class="flex items-center mt-5">
+                    <div class="px-2.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click.prevent="changePage(1)">
+                      <span class="text-gray-700"><i class="fa-solid fa-angles-left fa-lg"></i></span>
+                    </div>
+                    <div class="px-3.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click="changePage(currentPage - 1)">
+                      <span class="text-gray-700"><i class="fa-solid fa-angle-left fa-lg"></i></span>
+                    </div>
+                    <template x-for="item in pages">
+                      <div @click="changePage(item)" class="px-4 py-2 cursor-pointer rounded-full hover:bg-gray-100" x-bind:class="{ 'bg-gray-300': currentPage === item }">
+                        <span class="text-gray-700" x-text="item"></span>
+                      </div>
+                    </template>
+                    <div class="px-3.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click="changePage(currentPage + 1)">
+                      <span class="text-gray-700"><i class="fa-solid fa-angle-right fa-lg"></i></span>
+                    </div>
+                    <div class="px-2.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click.prevent="changePage(pagination.lastPage)">
+                      <span class="text-gray-700"><i class="fa-solid fa-angles-right fa-lg"></i></span>
+                    </div>
+                  </div>
+                  </template>
+                </div>
+              </template>
+              <template x-if="books === null">
+                <div class="w-full h-full flex justify-center items-center mx-auto">
+                  <div class="text-gray-400">
+                    <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                    <span>유의사항</span>
+                    <div class="">
+                      국립중앙도서관의 서지정보 공공API를 사용하므로 해당 API 점검 혹은 제한 시에
+                      검색결과가 없을 수도 있습니다. <br/>
+                      출판년도는 등록된 출간예정일에 해당하므로 도서의 실제출간일과 다를 수 있습니다.
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div> 
+            <div class="relative flex justify-between">
+              <button class="px-4 py-2 bg-gray-200 border border-gray-300 rounded-lg" @click="openIsbnModal = false;">취소</button>
+              <button class="px-4 py-2 text-white bg-gray-600 rounded-lg" @click="openIsbnModal = false; populateForm(); books = null">등록하기</button>
+            </div>
+          </div>
+        </div>

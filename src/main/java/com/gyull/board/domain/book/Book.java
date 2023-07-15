@@ -27,6 +27,7 @@ import lombok.ToString;
 public class Book {
   
   private long book_idx;
+  private String book_num;
   private String book_title;
   private String author;
   private String publisher;
@@ -38,7 +39,7 @@ public class Book {
   private LocalDateTime published_date;
   private LocalDateTime regDate;
   private String bookCount;
-  private String isBorrow;
+  private String bookState;
   private LocalDateTime borrowDate;
   private LocalDateTime borrowEndDate;
   private String extra;
