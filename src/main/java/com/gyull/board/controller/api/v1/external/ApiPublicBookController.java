@@ -14,8 +14,10 @@ import com.gyull.board.domain.api.publicLib.SeojiDetailReqDto;
 import com.gyull.board.domain.api.publicLib.SeojiIsbnReqDto;
 import com.gyull.board.service.api.publicLib.PublicBookService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
+@Tag(name="국립중앙도서관 오픈 API", description="도서정보 검색을 위한 국립중앙도서관 오픈 API")
 @RestController
 @RequestMapping(value = "/api/publicLib")
 @RequiredArgsConstructor

@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
+@Tag(name="장서관리", description="등록된 도서목록을 관리하는 API")
 @RestController
 @RequestMapping(value = "/api/v1/book")
 @RequiredArgsConstructor

@@ -10,8 +10,10 @@ import com.gyull.board.domain.api.naver.SearchDetailReqDto;
 import com.gyull.board.domain.api.naver.SearchReqDto;
 import com.gyull.board.service.api.naver.NaverBookService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
+@Tag(name="네이버 오픈 API", description="도서정보 검색을 위한 네이버 오픈 API")
 @RestController
 @RequestMapping(value = "/api/naver")
 @RequiredArgsConstructor
