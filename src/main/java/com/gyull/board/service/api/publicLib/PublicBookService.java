@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gyull.board.domain.api.publicLib.SeojiDetailReqDto;
 import com.gyull.board.domain.api.publicLib.SeojiIsbnReqDto;
@@ -122,6 +120,7 @@ public class PublicBookService {
                       .build()
                       .encode(StandardCharsets.UTF_8)
                       .toUri();
+                      
       return restTemplate.exchange(targetUrl, HttpMethod.GET, null, String.class).getBody();
     }
  }

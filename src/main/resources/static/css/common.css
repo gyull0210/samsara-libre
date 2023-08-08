@@ -968,6 +968,10 @@ select {
   margin-bottom: 1rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .mb-auto {
   margin-bottom: auto;
 }
@@ -1038,14 +1042,6 @@ select {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
-.mb-8 {
-  margin-bottom: 2rem;
 }
 
 .block {
@@ -1192,6 +1188,10 @@ select {
   width: 3.5rem;
 }
 
+.w-2\/3 {
+  width: 66.666667%;
+}
+
 .w-2\/5 {
   width: 40%;
 }
@@ -1306,6 +1306,10 @@ select {
 
 .table-auto {
   table-layout: auto;
+}
+
+.border-collapse {
+  border-collapse: collapse;
 }
 
 .origin-top-right {
@@ -2433,11 +2437,6 @@ table tr:focus {
   border-color: transparent;
 }
 
-.focus\:bg-gray-200:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
 .focus\:bg-gray-800:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -2595,10 +2594,6 @@ table tr:focus {
     display: none;
   }
 
-  .md\:w-2\/3 {
-    width: 66.666667%;
-  }
-
   .md\:translate-x-0 {
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -2620,10 +2615,6 @@ table tr:focus {
 
   .lg\:w-1\/3 {
     width: 33.333333%;
-  }
-
-  .lg\:w-2\/3 {
-    width: 66.666667%;
   }
 
   .lg\:max-w-screen-lg {

@@ -46,17 +46,106 @@ layout:decorate="~{layout/adminLayout}">
             </div>
           </div>
         </div>
-        <div x-data="{tabs: 0}" class="flex flex-col font-semibold">
-          <div class="flex">
-            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 0 ? 'bg-white text-black' : 'bg-gray-400 text-white'" @click="tabs=0">기본정보</div>
-            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 1 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=1">추가정보</div>
-          </div>     
-        <div class="flex px-4 py-4 bg-white border border-transparent rounded-bl-md rounded-br-md rounded-tr-md shadow-md text-medium shadow-gray-200/80">
-          <div>
+        <div class="p-4 bg-white border border-transparent rounded-md shadow-md shadow-gray-200/80">
+          <form>
+            <div class="flex gap-4 mb-4">
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">입수구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">매체구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">입수구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">입수구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex gap-4 mb-4">
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">입수구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">매체구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">입수구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">입수구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">형식구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">자료구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">주제구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4">등록구분</label>
+                <select class="text-sm rounded-md shadow border border-gray-300">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="p-4 bg-white border border-transparent rounded-md shadow-md shadow-gray-200/80">
+          <div class="">
             <form id="bookForm" onSubmit="return false;">
               <div class="py-2 mb-4 text-base font-semibold border-b border-gray-300">
                 기본 정보
-              </div> 
+              </div>
               <div class="flex flex-col lg:flex-row">                   
                 <!-- defult information -->
                 <div class="flex flex-col items-center gap-6 lg:items-stretch lg:flex-row">

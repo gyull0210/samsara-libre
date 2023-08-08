@@ -16,34 +16,31 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 @EnableWebSecurity
 public class SecurityConfig {
 
-  @Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.cors().disable();
-    http.csrf().disable();          
-    http.authorizeRequests()
-        .antMatchers("/resources/**","/static/**", "/img/**", "/css/**", "/js/**").permitAll()
-        .antMatchers("/", "/policy/**", "/expolore/**", "/notice/**", "/reservation/**", "/community/**", "/admin/**", "/admin/**/**", "/**", "/**/**").permitAll()
-        .antMatchers("/mylibrary", "/mypage").hasAuthority("user")
-        .anyRequest()                     
-        .authenticated();
+    @Bean
+	  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		    http.cors().disable();
+        http.csrf().disable();
+        http.authorizeRequests(requests -> requests
+            .antMatchers("/resources/**", "/static/**", "/img/**", "/css/**", "/js/**").permitAll()
+            .antMatchers("/", "/policy/**", "/expolore/**", "/notice/**", "/reservation/**", "/community/**", "/admin/**", "/admin/**/**", "/**", "/**/**").permitAll()
+            .antMatchers("/mylibrary", "/mypage").hasAuthority("user")
+            .anyRequest()
+            .authenticated());
+        http.formLogin(login -> login
+            .loginPage("/login").permitAll()
+            .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
+            .defaultSuccessUrl("/")
+            .failureUrl("/login?failure=true"))
+            .logout(logout -> logout
+            .logoutSuccessUrl("/"))
+            .exceptionHandling(handling -> handling.accessDeniedHandler(new AccessDeniedHandlerImpl()));
 
-    http.formLogin()
-        .loginPage("/login").permitAll()
-        .successHandler(new SavedRequestAwareAuthenticationSuccessHandler())
-        .defaultSuccessUrl("/")
-        .failureUrl("/login?failure=true")
-        .and()
-        .logout()
-        .logoutSuccessUrl("/")
-        .and()
-        .exceptionHandling().accessDeniedHandler(new AccessDeniedHandlerImpl());
+        return http.build();
+	  }
 
-    return http.build();
-	}
-
-  @Bean
-  public Argon2PasswordEncoder passwordEncoder(){
-    return new Argon2PasswordEncoder();
-  }
+    @Bean
+    public Argon2PasswordEncoder passwordEncoder(){
+        return new Argon2PasswordEncoder();
+    }
 
 }

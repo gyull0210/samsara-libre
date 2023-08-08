@@ -11,46 +11,4 @@ public class DashboardController {
     return "admin/dashboard";
   }
 
-  @GetMapping("/admin/book/createBook")
-  public String createBook(){
-
-    return "admin/book/createBook";
-  }
-
-  @GetMapping("/admin/book/createBookTest")
-  public String createBookTest(){
-
-    return "admin/book/createBookTest";
-  }
-
-  @GetMapping("/admin/book/searchBook")
-  public String searchBook(){
-
-    return "admin/book/searchBook";
-  }
-
-  @GetMapping("/admin/user/searchUser")
-  public String searchUser(){
-
-    return "admin/user/searchUser";
-  }
-
-  @GetMapping("/admin/user/createUser")
-  public String createUser(){
-
-    return "admin/user/createUser";
-  }
-
-  @GetMapping("/admin/borrow/searchBorrow")
-  public String searchBorrow(){
-
-    return "admin/borrow/searchBorrow";
-  }
-
-  @GetMapping("/admin/setting/defaultSetting")
-  public String defaultSetting(){
-    
-    return "admin/setting/defaultSetting";
-  }
-
 }

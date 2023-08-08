@@ -4,7 +4,7 @@ xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{layout/adminLayout}"> 
 <head>    
-  <title>회원조회</title>
+  <title>등록 자료 관리</title>
   <link rel="stylesheet" href="../../../static/css/common.css" th:href="@{/static/css/common.css}" /> 
   <script src="https://kit.fontawesome.com/f31fa860a2.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
@@ -13,71 +13,74 @@ layout:decorate="~{layout/adminLayout}">
   <main class="relative w-full h-full bg-gray-100" layout:fragment="content">
     <div class="relative w-full h-screen pt-16 pl-0 lg:pl-56">
       <div class="flex flex-col h-full gap-6 p-4 overflow-y-auto">
-        <div class="p-4 font-semibold bg-white border border-transparent rounded-md shadow-md text-medium shadow-gray-200/80">
-          <i class="text-gray-400 fa-solid fa-user fa-lg"></i>
-          회원 조회
+        <div class="p-4 text-sm font-semibold bg-white border border-transparent rounded-md shadow-md text-medium shadow-gray-200/80">
+          <i class="text-gray-400 fa-solid fa-book fa-lg"></i>
+          등록 자료 관리
         </div>
         <div x-data="{tabs: 0}" class="flex flex-col font-semibold">
           <div class="flex" >
-            <div class="py-2 px-6 rounded-t-lg rounded-b-none shadow" :class="tabs === 0 ? 'bg-white text-black' : 'bg-gray-400 text-white'" @click="tabs=0">일반검색</div>
-            <div class="py-2 px-6 rounded-t-lg rounded-b-none shadow" :class="tabs === 1 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=1">상세검색</div>
+            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 0 ? 'bg-white text-black' : 'bg-gray-400 text-white'" @click="tabs=0">일반검색</div>
+            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 1 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=1">상세검색</div>
           </div>
           <div class="flex px-4 py-4 bg-white border border-transparent rounded-bl-md rounded-br-md rounded-tr-md shadow-md text-medium shadow-gray-200/80">
             <!--일반검색-->
-            <div class="w-full flex flex-col gap-4" x-show="tabs === 0">
-              <div class="flex gap-4">
-                <select class="rounded-md border border-gray-300 shadow">
-                  <option value="">전체</option>
-                  <option value="">회원번호</option>
-                  <option value="">이름</option>
-                  <option value="">주소</option>
-                </select>
-                <input class="w-full px-4 py-2 rounded-md border border-gray-300 shadow" type="text">
-                <button class="px-6 py-2 rounded-lg bg-gray-600 text-white whitespace-nowrap" type="button">검색</button>
-              </div>              
-              <div class="">
-                <label class="mb-4" for="">등록일</label>
-                <div class="flex gap-4">
-                  <input class="px-4 py-2 rounded-md border border-gray-300 shadow" type="date">
-                  <input class="px-4 py-2 rounded-md border border-gray-300 shadow" type="date">
+            <div class="w-full flex gap-4" x-show="tabs === 0">
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4" for="">입수구분</label>
+                <select class="rounded-md border border-gray-300 text-sm shadow">
+                  <option value="">적용안함</option>
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>               
+              </div>
+              <div class="flex items-baseline gap-4">
+                <label class="text-sm mb-4" for="">입력일</label>
+                <div class="flex items-baseline gap-4">
+                  <input class="px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="date">
+                  <span>~</span>
+                  <input class="px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="date">
                 </div>
               </div>
-            </div>          
+              <div class="flex items-baseline gap-4">
+                <button class="px-6 py-2 rounded-lg bg-gray-600 text-sm text-white whitespace-nowrap" type="button">검색</button>
+                <button class="px-6 py-2 rounded-lg bg-gray-600 text-sm text-white whitespace-nowrap" type="button">상세검색</button>
+              </div>
+            </div>
             <!--상세검색-->        
             <div class="w-full flex flex-col gap-4" x-show="tabs === 1">
-              <div class="flex gap-4">
-                <select class="rounded-md border border-gray-300 shadow">
+              <div class="flex items-baseline gap-4">
+                <select class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">전체</option>
                 </select>
-                <input class="w-full px-4 py-2 rounded-md border border-gray-300 shadow" type="text">
-                <select class="rounded-md border border-gray-300 shadow">
+                <input class="w-full px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="text">
+                <select class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">AND</option>
                 </select>
               </div>
-              <div class="flex gap-4">
-                <select class="rounded-md border border-gray-300 shadow">
+              <div class="flex items-baseline gap-4">
+                <select class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">전체</option>
                 </select>
-                <input class="w-full px-4 py-2 rounded-md border border-gray-300 shadow" type="text">
-                <select class="rounded-md border border-gray-300 shadow">
+                <input class="w-full px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="text">
+                <select class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">AND</option>
                 </select>
               </div>
-              <div class="flex gap-4">
-                <select class="rounded-md border border-gray-300 shadow">
+              <div class="flex items-baseline gap-4">
+                <select class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">전체</option>
                 </select>
-                <input class="w-full px-4 py-2 rounded-md border border-gray-300 shadow" type="text">
-                <select class="rounded-md border border-gray-300 shadow">
+                <input class="w-full px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="text">
+                <select class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">AND</option>
                 </select>
               </div>
-              <div class="flex gap-4">
-                <select class="rounded-md border border-gray-300 shadow">
+              <div class="flex items-baseline gap-4">
+                <select class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">전체</option>
                 </select>
-                <input class="w-full px-4 py-2 rounded-md border border-gray-300 shadow" type="text">
-                <button class="px-6 py-2 rounded-lg bg-gray-600 text-white whitespace-nowrap" type="button">검색</button>
+                <input class="w-full px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="text">
+                <button class="px-6 py-2 rounded-lg bg-gray-600 text-sm text-white whitespace-nowrap" type="button">검색</button>
               </div>
             </div> 
           </div>
@@ -85,7 +88,7 @@ layout:decorate="~{layout/adminLayout}">
         <div class="p-4 bg-white border border-transparent rounded-md shadow-md shadow-gray-200/80">
           <div class="mb-4">
             <div class="flex justify-between mb-4">
-              <select class="rounded-md border border-gray-300 shadow">
+              <select class="rounded-md border text-sm border-gray-300 shadow">
                 <option value="">10</option>
                 <option value="">20</option>
                 <option value="">50</option>
@@ -96,7 +99,7 @@ layout:decorate="~{layout/adminLayout}">
                 <div class="">
                   <div class="relative" x-data="{dropdownFilter: false}">
                     <!-- Dropdown toggle button -->
-                    <button @click="dropdownFilter = ! dropdownFilter" class="flex items-center px-6 py-2 text-white bg-gray-600 rounded-md whitespace-nowrap">                 
+                    <button @click="dropdownFilter = ! dropdownFilter" class="flex items-center px-6 py-2 text-sm text-white bg-gray-600 rounded-md whitespace-nowrap">                 
                       필터
                     </button>
                     <!-- Dropdown list -->
@@ -166,30 +169,20 @@ layout:decorate="~{layout/adminLayout}">
                         수정일
                       </div>
                       <div class="flex justify-between gap-4 px-4 py-2">
-                        <button class="px-6 py-2 rounded-lg border bg-gray-100 whitespace-nowrap" type="reset">초기화</button>
-                        <button class="px-6 py-2 rounded-lg bg-gray-600 text-white whitespace-nowrap" type="button">확인</button>
+                        <button class="px-6 py-2 rounded-lg border bg-gray-100 text-sm whitespace-nowrap" type="reset">초기화</button>
+                        <button class="px-6 py-2 rounded-lg bg-gray-600 text-sm text-white whitespace-nowrap" type="button">확인</button>
                       </div>
                     </div>
                   </div> 
                 </div>
-                <div class="flex gap-4">
-                  <select class="rounded-md border border-gray-300 shadow">
-                    <option value="">전체</option>
-                    <option value="">전체</option>
-                    <option value="">전체</option>
-                    <option value="">전체</option>
-                  </select>
-                  <input class="rounded-md border border-gray-300 shadow" type="text">
-                  <button class="px-6 py-2 bg-gray-600 rounded-lg text-white whitespace-nowrap" type="button">결과 내 재검색</button>
-                </div>
-                <div class="">
-                  <button class="px-6 py-2 bg-gray-600 rounded-lg text-white whitespace-nowrap" type="button">엑셀로 다운로드</button>
-                </div>
               </div>         
             </div>
-            <div class="flex justify-end gap-4">
-              <button class="px-6 py-2 text-sm bg-gray-600 text-white rounded-lg" type="button">상세보기</button>
-              <button class="px-6 py-2 text-sm bg-gray-600 text-white rounded-lg" type="button">수정</button>
+            <div class="flex justify-between gap-4">
+              <div class="">
+                <button class="px-6 py-2 text-sm bg-gray-200 rounded-lg" type="button" @click="">입력</button>
+                <button class="px-6 py-2 text-sm bg-gray-200 rounded-lg" type="button">등록번호 부여</button>
+                <button class="px-6 py-2 text-sm bg-gray-200 rounded-lg" type="button">수정</button>
+              </div>
               <button class="px-6 py-2 text-sm bg-gray-600 text-white rounded-lg" type="button">삭제</button>
             </div>
             <div class="">
@@ -205,19 +198,26 @@ layout:decorate="~{layout/adminLayout}">
                       <input class="" type="checkbox">
                     </div>
                   </th>
-                  <th class="px-4 py-2">순번</th>                                           
+                  <th class="px-4 py-2">
+                    순번                                           
+                  </th>
                   <th class="px-4 py-2">등록번호</th>
-                  <th class="px-4 py-2">회원상태</th>
-                  <th class="px-4 py-2">등급</th>
-                  <th class="px-4 py-2">이름</th>
-                  <th class="px-4 py-2">아이디</th>
-                  <th class="px-4 py-2">연락처</th>
-                  <th class="px-4 py-2">이메일</th>
-                  <th class="px-4 py-2">우편번호</th>
-                  <th class="px-4 py-2">주소</th>
+                  <th class="px-4 py-2">도서상태</th>
+                  <th class="px-4 py-2">서명</th>
+                  <th class="px-4 py-2">저자</th>
+                  <th class="px-4 py-2">
+                    출판사
+                  </th>
+                  <th class="px-4 py-2">분류기호</th>
+                  <th class="px-4 py-2">저자기호</th>
+                  <th class="px-4 py-2">권차</th>
+                  <th class="px-4 py-2">복본</th>
+                  <th class="px-4 py-2">별치</th>
+                  <th class="px-4 py-2">ISBN</th>
+                  <th class="px-4 py-2">소장위치</th>
+                  <th class="px-4 py-2">반입구분</th>
                   <th class="px-4 py-2">등록일</th>
                   <th class="px-4 py-2">수정일</th>
-                  <th class="px-4 py-2">최근 로그인</th>
                 </tr>
               </thead>
               <tbody class="">
@@ -227,19 +227,24 @@ layout:decorate="~{layout/adminLayout}">
                       <input class="" type="checkbox">
                     </div>
                   </td>
+                  <td class="px-4 py-2">
+                    
+                  </td>
                   <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">US23000001</td>
                   <td class="px-4 py-2">대출가능</td>
-                  <td class="px-4 py-2">일반</td>
-                  <td class="px-4 py-2">아무개</td>
-                  <td class="px-4 py-2">amuge</td>
-                  <td class="px-4 py-2">01050006000</td>
-                  <td class="px-4 py-2">anonymous@gmail.com</td>
-                  <td class="px-4 py-2">45343</td>
-                  <td class="px-4 py-2">허리도 가늘군 만지면 부러지리</td>
+                  <td class="px-4 py-2">길다란제목으로테스트합니다</td>
+                  <td class="px-4 py-2">저자입니다1</td>
+                  <td class="px-4 py-2">1출판사입니다</td>
+                  <td class="px-4 py-2">1</td>
+                  <td class="px-4 py-2">1</td>
+                  <td class="px-4 py-2">1</td>
+                  <td class="px-4 py-2">1</td>
+                  <td class="px-4 py-2">1</td>
+                  <td class="px-4 py-2">14342342342424242</td>
+                  <td class="px-4 py-2">자료실이빈다</td>
+                  <td class="px-4 py-2">구입</td>
                   <td class="px-4 py-2">2021.04.02</td>
                   <td class="px-4 py-2">2021.04.02</td>
-                  <td class="px-4 py-2">2023.04.02</td>
                 </tr>
               </tbody>
             </table>

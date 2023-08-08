@@ -1,8 +1,6 @@
 package com.gyull.board.service.api.naver;
 
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;

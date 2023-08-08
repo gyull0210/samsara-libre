@@ -5,7 +5,7 @@ Project Book_Management {
     **도서관리시스템을 위한 DB설계**
   '''
 }
-Table user as U {
+Table member {
   user_id int [pk, increment]
   id varchar
   password varchar
@@ -15,7 +15,7 @@ Table user as U {
   address varchar
   detailAddr varchar
   extraAddr varchar
-  role varchar
+  role_idx int
   borrowlimit int
   borrowCount int
   overdueCount int
@@ -27,7 +27,20 @@ Table user as U {
   isWithdraw boolean
   note: "table 'users' contains user information"
 }
-Table Withdraw {
+Table role {
+  role_idx int
+  permission_idx int
+  roleName varchar
+}
+Table permission {
+  permission_idx int
+  board_idx int
+  create boolean
+  read boolean
+  update boolean
+  delete boolean
+}
+Table withdraw {
   id int
   user_idx int
   user_id varchar
@@ -36,28 +49,49 @@ Table Withdraw {
 }
 Table book {
   book_id int [pk]
-  bookNum varchar 
-  class_code varchar [note: "분류기호"]
-  author_code varchar
-  volume varchar
-  copy varchar
+  book_info int [fk]
+  control_no varchar [note: "도서번호"]
+  call_no varchar [note: "청구기호"]
+  class_no varchar [note: "분류기호"]
+  author_no varchar [note: "저자기호"]
+  volume varchar [note: "권차"]
+  copy varchar [note: "복본"]
+  kdc varchar
+  ddc varchar
   attachment varchar
-  location varchar
-  checkin_status varchar
+  location_idx int
+  keyword varchar
   created_at datetime [default: `now()`, note: "created time"]
   modified_at datetime [default: `now()`, note: "modified time"]
   note: "table 'books' contains book information"
 }
-Table book_info {
-  id int
-  isbn varchar
+Table location {
+  location_idx int [pk]
+  location_name varchar
+}
+Table book_manage {
+  book_manage_id int [pk]
+  type varchar
+  description varchar
+  purchase_at datetime
+  created_at datetime
+}
+Table product {
+  product_id int [pk]
   title varchar
   author varchar
   publisher varchar
+  pubdate date
+  isbn varchar
+  edtion varchar
+  volume varchar
+  series varchar
+  description varchar
   price varchar
   discount varchar
-  description varchar
-  pub_date date
+  purchase_price varchar 
+  imgUrl varchar
+  thumbUrl varchar
   created_at datetime [default: `now()`, note: "created time"]
   modified_at datetime [default: `now()`, note: "modified time"]
 }
@@ -69,35 +103,6 @@ Table borrow {
   modifed_at datetime
   recieved_at datetime
 }
-Table conversation {
-  id int [pk]
-  book_id int
-  description varchar
-  status varchar
-  created_at datetime
-  modifed_at datetime
-}
-Table board {
-  id int [pk]
-  title varchar
-  user_id varchar
-  content varchar
-  attachment varchar
-  view int
-}
-Table reply {
-  id int [pk]
-  board_id int
-  user_id varchar
-  comment varchar
-  created_at datetime
-}
-Table qna {
-  id int [pk]
-  title varchar
-  user_id varchar
-  content varchar
-  reply_id varchar
-}
+
 
 

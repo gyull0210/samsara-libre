@@ -8,19 +8,12 @@ import lombok.ToString;
 /*
  * @description
  * 책번호
- * 책제목
- * 작가명
- * 발행자
- * isbn번호
  * 도서코드
  * 도서분류
+ * 권차
+ * 복본
  * 관내도서비치구역
- * 출간일
- * 도서등록일
- * 동일 도서 갯수
  * 대여가능여부
- * 대여날짜
- * 반납날짜
  */
 @Getter
 @ToString

@@ -1,0 +1,115 @@
+  <div class="inset-0 w-full max-w-screen-lg h-full absolute z-50 p-4 border shadow bg-white rounded-lg top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]" 
+        :class="openLibraryModal ? '':'block'" x-show="openLibraryModal" x-cloak
+        id="searchLibraryModal">
+        <div class="relative flex flex-col justify-between h-full" x-data="searchLibrary()">
+          <div class="py-2 text-sm font-semibold border-b border-gray-300">
+            관내 소장도서 검색
+          </div>
+         <div class="flex flex-col overflow-y-auto h-full">
+            <div class="my-4">
+              <form class="flex gap-4" onSubmit="return false;">
+                <div class="">
+                  
+                </div>
+                <div class="">
+
+                </div>
+                <select id="target" class="py-2 border border-gray-300 rounded-md shadow">
+                  <option value="all">전체</option>
+                  <option value="title">제목</option>
+                  <option value="isbn">ISBN</option>
+                </select>
+                <input id="keyword" class="px-4 py-2 border border-gray-300 rounded-md shadow" type="text" placeholder="도서명을 입력하세요">
+                <button class="px-4 py-2 text-white bg-gray-600 rounded-lg whitespace-nowrap" 
+                  @click="changeInput(); fetchLibrary(); currentPage = 1">검색</button>
+              </form>
+            </div>
+            <template x-if="books !== null">
+              <div class="relative mb-4 w-full">
+                <div class="relative overflow-scroll">
+                  <table class="w-full rounded-md table-auto">
+                    <thead class="overflow-x-auto bg-gray-200">
+                      <tr>
+                        <th class="px-6 py-2 whitespace-nowrap">
+                          표지
+                        </th>
+                        <th class="px-6 py-2 whitespace-nowrap">도서명</th>
+                        <th class="px-6 py-2 whitespace-nowrap">저자</th>
+                        <th class="px-6 py-2 whitespace-nowrap">출판사</th>
+                        <th class="px-6 py-2 whitespace-nowrap">출판년도</th>
+                        <th class="px-6 py-2 whitespace-nowrap">가격</th>
+                        <th class="px-6 py-2 whitespace-nowrap">ISBN</th>
+                      </tr>
+                    </thead>                 
+                    <tbody>
+                      <template x-for="book in books">
+                        <tr class="border-b border-dashed hover:bg-gray-100">                     
+                          <td class="p-2">
+                            <div class="flex items-center">
+                            <div class="flex items-center mr-2">
+                              <input class="w-4 h-4" type="radio" x-model="book.selected" @change="updateSelectedBook(book)">
+                            </div>
+                            <div class="min-w-[4rem] w-12 h-18 rounded overflow-hidden">
+                              <img class="object-cover object-center w-full h-full" :src="book.image" :alt="book.title">
+                            </div>
+                            </div>
+                          </td>
+                          <td class="px-6 py-2 whitespace-nowrap" x-text="book.title"></td>
+                          <td class="px-6 py-2 whitespace-nowrap" x-text="book.author"></td>
+                          <td class="px-6 py-2 whitespace-nowrap" x-text="book.publisher"></td>
+                          <td class="px-6 py-2" x-text="book.pubdate"></td>
+                          <td class="px-6 py-2" x-text="book.discount"></td>
+                          <td class="px-6 py-2" x-text="book.isbn"></td>
+                        </tr>
+                      </template>
+                      <template x-if="books.length === 0">
+                        <tr>
+                          <td class="py-4" colspan="7">
+                            <div class="text-gray-500 w-full h-full flex justify-center items-center mx-auto">
+                              <i class="fa-solid fa-triangle-exclamation fa-lg"></i>
+                              <span class="">검색결과가 없습니다.</span>
+                            </div>
+                          </td>
+                        </tr>                   
+                      </template>
+                    </tbody>
+                  </table>               
+                </div>
+                <template x-if="books.length !== 0">
+                <div class="flex items-center mt-5">
+                  <div class="px-2.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click.prevent="changePage(1)">
+                    <span class="text-gray-700"><i class="fa-solid fa-angles-left fa-lg"></i></span>
+                  </div>
+                  <div class="px-3.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click="changePage(currentPage - 1)">
+                    <span class="text-gray-700"><i class="fa-solid fa-angle-left fa-lg"></i></span>
+                  </div>
+                  <template x-for="item in pages">
+                    <div @click="changePage(item)" class="px-4 py-2 cursor-pointer rounded-full hover:bg-gray-100" x-bind:class="{ 'bg-gray-300': currentPage === item }">
+                      <span class="text-gray-700" x-text="item"></span>
+                    </div>
+                  </template>
+                  <div class="px-3.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click="changePage(currentPage + 1)">
+                    <span class="text-gray-700"><i class="fa-solid fa-angle-right fa-lg"></i></span>
+                  </div>
+                  <div class="px-2.5 py-2 cursor-pointer rounded-full hover:bg-gray-100" @click.prevent="changePage(pagination.lastPage)">
+                    <span class="text-gray-700"><i class="fa-solid fa-angles-right fa-lg"></i></span>
+                  </div>
+                </div>
+                </template>
+              </div>
+            </template>
+            <template x-if="books === null">
+              <div class="w-full h-full flex justify-center items-center mx-auto">
+                <div class="text-gray-400">
+                  <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                  <span>유의사항</span>
+                </div>
+              </div>
+            </template>
+          </div> 
+          <div class="relative flex justify-between">
+            <button class="px-4 py-2 bg-gray-200 border border-gray-300 rounded-lg" @click="openLibraryModal = false;">취소</button>
+            <button class="px-4 py-2 text-white bg-gray-600 rounded-lg" @click="openLibraryModal = false; populateForm(); books = null">등록하기</button>
+          </div>
+        </div>
+      </div>
