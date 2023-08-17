@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/adminLayout}"> 
+<head>
+    <meta charset="UTF-8" />
+    <title>대출 설정</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/static/css/common.css}" layout:fragment="css"/>   
+    <script th:src="@{/static/js/script.js}" ></script>
+    <script src="https://kit.fontawesome.com/f31fa860a2.js" crossorigin="anonymous"></script>      
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
+  </head>
+<body>
+  <main class="relative w-full h-full bg-gray-100" layout:fragment="content">
+    <div class="w-full h-screen pt-16 pl-0 lg:pl-56">
+      <div class="flex flex-col h-full gap-6 p-4 overflow-y-auto">            
+        <div class="p-4 font-semibold bg-white border border-transparent rounded-md shadow-md text-medium shadow-gray-200/80">
+          <i class="text-gray-400 fa-solid fa-cog fa-lg"></i>
+          대출 설정
+        </div>
+        <div class="p-4 font-semibold bg-white border border-transparent rounded-md shadow-md text-medium shadow-gray-200/80">
+          <div class="flex flex-col lg:flex-row space-x-6">
+            <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">기본 설정</div>
+            <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">대출 설정</div>
+            <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">회원 설정</div>
+            <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">도서관리 설정</div>
+            <div class="px-4 py-2 text-sm rounded-lg hover:bg-gray-200">관리자 설정</div>
+          </div>
+        </div>
+        <!-- board -->
+        <div class="p-4 bg-white border border-transparent rounded-md shadow-md shadow-gray-200/80">
+          <div class="mb-4">
+            <form>
+              <div class="mb-4">
+                <label class="block text-sm">도서관 이름</label>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow" type="text">
+              </div>
+              <div class="mb-4">
+                <label class="block text-sm">도서관 주소</label>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow" type="text">
+              </div>
+              <div class="mb-4">
+                <label class="block text-sm">도서관 연락처</label>
+                <input class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow" type="text">
+              </div>
+            </form>
+          </div>
+          <div class="relative flex justify-between w-full">
+            <button class="px-4 py-2 bg-gray-200 border border-gray-300 rounded-lg">초기화</button>
+            <button class="px-4 py-2 text-white bg-gray-600 rounded-lg">설정 저장</button>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </main>
+</body>
+</html>

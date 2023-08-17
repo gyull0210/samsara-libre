@@ -18,4 +18,14 @@
   <select id="searchDetail" resultType="com.gyull.board.domain.book.Book">
     select * from user where id = #{id}
   </select>
+
+  <select id="searchCatalogList" resultType="com.gyull.board.domain.book.Book">
+
+  </select>
+  <insert id="createBook">
+
+  </insert>
+  <insert id="createBookList">
+    
+  </insert>
 </mapper>

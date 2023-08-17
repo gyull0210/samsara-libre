@@ -18,4 +18,16 @@ public class UserController {
     return "admin/user/createUser";
   }
 
+  @GetMapping("/admin/user/modifyUser")
+  public String modifyUser(){
+
+    return "admin/user/modifyUser";
+  }
+
+  @GetMapping("/admin/user/detailUser")
+  public String detailUser(){
+
+    return "admin/user/detailUser";
+  }
+
 }

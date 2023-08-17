@@ -29,7 +29,7 @@
                 </div>
                 <a href="#"
                   class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
-                  >출납관리</a>
+                  >대출반납관리</a>
               </div>
               <button class="absolute right-0 flex items-center p-1" tabindex="-1">
                 <i class="fa-solid fa-chevron-down fa-xs"></i>
@@ -39,23 +39,9 @@
               <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
                 <li>
                   <a
-                    href="/admin/borrow"
+                    href="/admin/borrow/searchBorrow"
                     class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
                     >대출</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/admin/receive"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >반납</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/admin/reservation"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >예약</a
                   >
                 </li>
                 <li>
@@ -109,14 +95,7 @@
                     class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
                     >희망도서</a
                   >
-                </li>
-                <li>
-                  <a
-                    href="/admin/acquisition"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >기증도서</a
-                  >
-                </li>                
+                </li>               
               </ul>
             </div>
           </li>
@@ -152,21 +131,7 @@
                   <a
                     href="/admin/book/createBook"
                     class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >장서등록</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/admin/book/maintenance"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >유지보수</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/admin/book/request"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >희망도서</a
+                    >원부등록</a
                   >
                 </li>
               </ul>
@@ -212,13 +177,6 @@
                     href="/admin/user/restrictedUser"
                     class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
                     >제재된 회원</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/admin/user/settingUser"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >회원설정</a
                   >
                 </li>
               </ul>
@@ -292,25 +250,11 @@
               <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
                 <li>
                   <a
-                    href="/admin/board/notice"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >공지사항</a
-                  >
-                </li>
-                <li>
-                  <a
                     href="/admin/board/supervisor"
                     class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
                     >관리자게시판</a
                   >
-                </li>
-                <li>
-                  <a
-                    href="/admin/board/qna"
-                    class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-                    >Q&A</a
-                  >
-                </li>                    
+                </li>                   
               </ul>
             </div>
           </li>              
@@ -340,7 +284,7 @@
               <i class="fa-solid fa-gear"></i>
             </div>
             <a
-              href="/admin/setting"
+              href="/admin/setting/defaultSetting"
               class="inline-block w-full py-2 pl-8 pr-4 text-xs rounded hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-gray-800"
               >설정</a
             >
@@ -357,38 +301,6 @@
               >알림</a>
           </li>             
         </ul>
-      </div>
-      <div class="pl-6 pr-4 py-4 bg-[#232529] flex items-center justify-between">
-        <div class="flex items-center">
-          <div
-            class="relative w-8 h-8 rounded-full before:absolute before:w-2 before:h-2 before:bg-green-500 before:rounded-full before:right-0 before:bottom-0 before:ring-1 before:ring-white"
-          >
-            <img
-              class="rounded-full"
-              src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
-              alt=""
-            />
-          </div>
-          <div class="flex flex-col pl-3">
-            <div class="text-sm text-gray-50">Jane Doeson</div>
-            <span class="text-xs text-[#acacb0] font-light tracking-tight">
-              janedoeson@gmail.com
-            </span>
-          </div>
-        </div>
-        <button
-          class="text-gray-400 bg-gray-700 rounded focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white"
-        >
-          <svg class="w-4 h-4 stroke-current" fill="none" viewBox="0 0 24 24">
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              d="M15.25 10.75L12 14.25L8.75 10.75"
-            ></path>
-          </svg>
-        </button>
       </div>
   </aside>
 </html>

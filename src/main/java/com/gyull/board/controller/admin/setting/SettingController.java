@@ -12,4 +12,22 @@ public class SettingController {
     return "admin/setting/defaultSetting";
   }
 
+  @GetMapping("/admin/setting/book")
+  public String book(){
+    
+    return "admin/setting/book";
+  }
+
+  @GetMapping("/admin/setting/user")
+  public String user(){
+
+    return "admin/setting/user";
+  }
+
+  @GetMapping("/admin/setting/circulation")
+  public String culculation(){
+
+    return "admin/setting/circulation";
+  }
+
 }

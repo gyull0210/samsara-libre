@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes, initial-scale=1.0" />
+</head>
+<body>
+    <div class="relative flex" x-data="{ openSidebar : false }">
+      <!-- sidebar fragment 사용-->
+      <th:block th:replace="fragments/admin/sidebar :: sidebarFragment"></th:block>
+
+      <div class="relative flex flex-col w-full min-h-screen">
+        <!-- header fragment 사용-->
+        <th:block th:replace="fragments/admin/header :: headerFragment"></th:block> 
+        <!-- content fragment 사용 -->
+        <th:block layout:fragment="content"></th:block>    
+      </div>
+    </div>
+    <th:block layout:fragment="javascript"></th:block>
+</body>
+</html>

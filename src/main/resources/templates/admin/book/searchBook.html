@@ -4,8 +4,8 @@ xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{layout/adminLayout}"> 
 <head>    
-  <title>장서 조회</title>
-  <link rel="stylesheet" href="../../../static/css/common.css" th:href="@{/static/css/common.css}" /> 
+  <title>원부 조회</title>
+  <link rel="stylesheet" href="../../../static/css/admin.css" th:href="@{/static/css/admin.css}" /> 
   <script src="https://kit.fontawesome.com/f31fa860a2.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
 </head>
@@ -15,7 +15,7 @@ layout:decorate="~{layout/adminLayout}">
       <div class="flex flex-col h-full gap-6 p-4 overflow-y-auto">
         <div class="p-4 text-sm font-semibold bg-white border border-transparent rounded-md shadow-md text-medium shadow-gray-200/80">
           <i class="text-gray-400 fa-solid fa-book fa-lg"></i>
-          장서 조회
+          원부 조회
         </div>
         <div x-data="{tabs: 0}" class="flex flex-col font-semibold">
           <div class="flex" >
@@ -200,7 +200,7 @@ layout:decorate="~{layout/adminLayout}">
             </div>
             <div class="flex justify-end gap-4">
               <button class="px-6 py-2 text-sm bg-gray-600 text-white rounded-lg" type="button">상세보기</button>
-              <button class="px-6 py-2 text-sm bg-gray-600 text-white rounded-lg" type="button">수정</button>
+              <button class="px-6 py-2 text-sm bg-gray-600 text-white rounded-lg" type="button">원부추가</button>
               <button class="px-6 py-2 text-sm bg-gray-600 text-white rounded-lg" type="button">삭제</button>
             </div>
             <div class="">
@@ -219,27 +219,22 @@ layout:decorate="~{layout/adminLayout}">
                   <th class="px-4 py-2">
                     순번                                           
                   </th>
+                  <th class="px-4 py-2">등록상태</th>
+                  <th class="px-4 py-2">원부번호</th>
+                  <th class="px-4 py-2">등록구분</th>
                   <th class="px-4 py-2">등록번호</th>
-                  <th class="px-4 py-2">도서상태</th>
-                  <th class="px-4 py-2">서명</th>
+                  <th class="px-4 py-2">제목</th>
+                  <th class="px-4 py-2">권제목</th>
                   <th class="px-4 py-2">저자</th>
-                  <th class="px-4 py-2">
-                    출판사
-                  </th>
-                  <th class="px-4 py-2">분류기호</th>
-                  <th class="px-4 py-2">저자기호</th>
-                  <th class="px-4 py-2">권차</th>
-                  <th class="px-4 py-2">복본</th>
-                  <th class="px-4 py-2">별치</th>
-                  <th class="px-4 py-2">ISBN</th>
-                  <th class="px-4 py-2">소장위치</th>
-                  <th class="px-4 py-2">반입구분</th>
+                  <th class="px-4 py-2">출판사</th>
+                  <th class="px-4 py-2">출판년도</th>
+                  <th class="px-4 py-2">형식구분</th>
                   <th class="px-4 py-2">등록일</th>
                   <th class="px-4 py-2">수정일</th>
                 </tr>
               </thead>
               <tbody class="">
-                <tr class="border-b border-dashed whitespace-nowrap focus:bg-sky-600 focus:text-white focus-within:text-white focus-within:bg-sky-600" tabIndex="0">
+                <tr class="border-b border-dashed whitespace-nowrap focus:bg-gray-100 focus-within:bg-gray-100 focus:text-black text-black" tabIndex="0">
                   <td class="p-2">
                     <div class="flex items-center">
                       <input class="" type="checkbox">
@@ -255,32 +250,6 @@ layout:decorate="~{layout/adminLayout}">
                   <td class="px-4 py-2">1</td>
                   <td class="px-4 py-2">1</td>
                   <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">14342342342424242</td>
-                  <td class="px-4 py-2">자료실이빈다</td>
-                  <td class="px-4 py-2">구입</td>
-                  <td class="px-4 py-2">2021.04.02</td>
-                  <td class="px-4 py-2">2021.04.02</td>
-                </tr>
-                <tr class="border-b border-dashed whitespace-nowrap focus:bg-sky-600 focus:text-white focus-within:text-white focus-within:bg-sky-600" tabIndex="0">
-                  <td class="p-2">
-                    <div class="flex items-center">
-                      <input class="" type="checkbox">
-                    </div>
-                  </td>
-                  <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">KMO12232323</td>
-                  <td class="px-4 py-2">대출가능</td>
-                  <td class="px-4 py-2">길다란제목으로테스트합니다</td>
-                  <td class="px-4 py-2">저자입니다1</td>
-                  <td class="px-4 py-2">1출판사입니다</td>
-                  <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">1</td>
-                  <td class="px-4 py-2">14342342342424242</td>
-                  <td class="px-4 py-2">자료실이빈다</td>
                   <td class="px-4 py-2">구입</td>
                   <td class="px-4 py-2">2021.04.02</td>
                   <td class="px-4 py-2">2021.04.02</td>

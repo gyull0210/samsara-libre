@@ -24,10 +24,11 @@ layout:decorate="~{layout/adminLayout}">
           </div>
           <div class="flex px-4 py-4 bg-white border border-transparent rounded-bl-md rounded-br-md rounded-tr-md shadow-md text-medium shadow-gray-200/80">
             <!--일반검색-->
-            <div class="w-full flex gap-4" x-show="tabs === 0">
+            <div x-show="tabs === 0">
+              <form class="w-full flex gap-4" onsubmit="return false;">
               <div class="flex items-baseline gap-4">
                 <label class="text-sm mb-4" for="">입수구분</label>
-                <select class="rounded-md border border-gray-300 text-sm shadow">
+                <select id="" class="rounded-md border border-gray-300 text-sm shadow">
                   <option value="">적용안함</option>
                   <option value="">구입</option>
                   <option value="">기증</option>
@@ -36,15 +37,16 @@ layout:decorate="~{layout/adminLayout}">
               <div class="flex items-baseline gap-4">
                 <label class="text-sm mb-4" for="">입력일</label>
                 <div class="flex items-baseline gap-4">
-                  <input class="px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="date">
+                  <input id="" class="px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="date">
                   <span>~</span>
-                  <input class="px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="date">
+                  <input id="" class="px-4 py-2 rounded-md border border-gray-300 text-sm shadow" type="date">
                 </div>
               </div>
               <div class="flex items-baseline gap-4">
-                <button class="px-6 py-2 rounded-lg bg-gray-600 text-sm text-white whitespace-nowrap" type="button">검색</button>
+                <button class="px-6 py-2 rounded-lg bg-gray-600 text-sm text-white whitespace-nowrap" type="button" onClick="">검색</button>
                 <button class="px-6 py-2 rounded-lg bg-gray-600 text-sm text-white whitespace-nowrap" type="button">상세검색</button>
               </div>
+              </form>
             </div>
             <!--상세검색-->        
             <div class="w-full flex flex-col gap-4" x-show="tabs === 1">
@@ -254,6 +256,11 @@ layout:decorate="~{layout/adminLayout}">
     </div>
   </main>
   <script layout:fragment="javascript">
+    const searchList = function(){
+      return {
+
+      }
+    }
     const searchBook = function(){
       return {
         searchOption:'',

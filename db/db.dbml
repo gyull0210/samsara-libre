@@ -5,104 +5,214 @@ Project Book_Management {
     **도서관리시스템을 위한 DB설계**
   '''
 }
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table ledger {
+  ledger_idx int [pk]
+  state varchar(10) [note:"해당 원부에 등록된 도서의 작업상태"]
+  ledger_nm int [note:"원부번호는 해당년도에 1번부터 순차적으로 부여됨"]
+  ledger_year varchar(4) [note:"원부년도는 해당년도 4자리"]
+  created_at datetime [default:`now()`]
+  modified_at datetime [default:`now()`]
+  note: "이 테이블은 원부등록대장입니다. 대출/반납을 하는 실질적인 등록된 도서의 목록입니다. 도서목록의 선입력 또는 등록대장의 선생성 후 연결 모두 가능하게 하기 위해 외래키를 사용하지 않습니다."
+}
+
+Table book {
+  book_idx INT [pk]
+  ledger_idx INT
+  classfy_no INT [note:"분류기호"]
+  control_no INT [note:"제어번호"]
+  author_no VARCHAR(50) [note:"저자기호"]
+  dewey_idx INT
+  volume VARCHAR(4) [note:"권차. 예시 v.1"]
+  copy VARCHAR(4) [note:"복본. 예시 c.1"]
+  publisher VARCHAR(50) [note:"출판사"]
+  pubdate DATETIME [note:"출간일"]
+  created_at DATETIME [default:`now()`]
+  modified_at DATETIME [default:`now()`]
+  title VARCHAR(50) [note:"서명"]
+  series_title VARCHAR(50) [note:"총서명"]
+  author VARCHAR(20) [note:"저자"]
+  location_idx INT [note:"서가 소장위치"]
+  isbn VARCHAR(13) 
+  description TEXT [note:"도서 설명"]
+  media_type VARCHAR(5) [note:"매체 구분"]
+  material_type VARCHAR(5) [note:"형식 구분"]
+  user_category VARCHAR(5) [note:"이용대상"]
+  note:"이 테이블은 개별 도서의 데이터입니다."
+}
+Ref: book.location_idx > location.location_idx
+Ref: book.dewey_idx > dewey.dewey_idx
+
+Table location {
+  location_idx INT [pk]
+  location_code VARCHAR(4)
+  location_name VARCHAR(20)
+  note: "소장위치를 등록하는 테이블입니다. 도서 테이블이 참조합니다."
+}
+
+Table tags {
+  tags_idx INT [pk]
+  book_idx INT
+  note:"개별 도서의 검색용 태그 그룹입니다. 태그 그룹 키로 태그 테이블에서 해당 도서의 태그를 모두 검색할 수 있습니다."
+}
+Ref: tags.book_idx - book.book_idx
+Ref: tags.tags_idx < tag.tags_idx
+
+Table tag {
+  tag_idx INT [pk]
+  tags_idx INT
+  tag_name VARCHAR(12)
+  note:"태그 테이블입니다. 개별 태그가 등록되며, 태그 그룹 키로 특정 책의 태그를 모두 찾을 수 있습니다."
+}
+
+Table borrow {
+  borrow_idx INT [pk]
+  member_idx INT
+  borrow_date DATETIME
+  note: "회원의 대출목록입니다. 날짜별로 되어있습니다. 대출번호 키로 그날 대출목록을 모두 조회할 수 있습니다."
+}
+Ref: member.member_idx < borrow.member_idx
+
+Table borrow_info {
+  borrow_idx INT
+  book_idx INT
+  return_date DATETIME [note:"실제 반납일"]
+  due_date DATETIME [note:"반납일"]
+  return_yn DATETIME
+  note: "대출 정보입니다. 어떤 대출번호가 어떤책을 대출 혹은 반납했는지 알 수 있습니다."
+}
+Ref: borrow_info.borrow_idx > borrow.borrow_idx
+Ref: borrow_info.book_idx > book.book_idx
+
 Table member {
-  user_id int [pk, increment]
-  id varchar
-  password varchar
-  name varchar
-  email varchar
-  postcode varchar
-  address varchar
-  detailAddr varchar
-  extraAddr varchar
-  role_idx int
-  borrowlimit int
-  borrowCount int
-  overdueCount int
-  mannerCount int
-  created_at datetime
-  modifed_at datetime
-  isLocked boolean
-  isBlocked boolean
-  isWithdraw boolean
-  note: "table 'users' contains user information"
+  member_idx INT [pk]
+  mem_id VARCHAR(45) [not null, unique]
+  mem_pw VARCHAR(45) [not null]
+  name VARCHAR(45) [not null]
+  phone VARCHAR(11) [not null]
+  image_url VARCHAR(100)
+  ip VARCHAR(45)
+  created_at DATETIME [default:`now()`]
+  modified_at DATETIME [default:`now()`]
+  recent_at DATETIME [default:`now()`]
+  role_group_role_idx INT
+  circulation_circ_idx INT
+  withdraw_yn TINYINT [default: 0]
+  note:"회원정보 테이블입니다."
 }
-Table role {
-  role_idx int
-  permission_idx int
-  roleName varchar
-}
-Table permission {
-  permission_idx int
-  board_idx int
-  create boolean
-  read boolean
-  update boolean
-  delete boolean
+Ref: member.member_idx - address.member_idx
+Ref: member.role_group_role_idx > role_group.role_idx
+Ref: member.circulation_circ_idx > circulation.circ_idx
+Table address {
+  address_idx INT [pk]
+  member_idx INT
+  postcode VARCHAR(5) [not null]
+  address VARCHAR(20) [not null]
+  detail_address VARCHAR(20)
+  extra_address VARCHAR(20)
+  note:"개별 회원의 주소 테이블입니다."
 }
 Table withdraw {
-  id int
-  user_idx int
-  user_id varchar
-  created_at
-  state varchar
+  withdraw_idx INT [pk]
+  member_idx INT
+  mem_id VARCHAR(45) [not null, unique]
+  name VARCHAR(45) [not null]
+  phone VARCHAR(11) [not null]
+  image_url VARCHAR(100)
+  ip VARCHAR(45)
+  created_at DATETIME [default:`now()`]
+  duedate_at DATETIME
+  note:"탈퇴 테이블입니다. 탈퇴한 회원의 최소정보가 저장되고 만료일이 지나면 회원테이블 데이터를 삭제합니다."
 }
-Table book {
-  book_id int [pk]
-  book_info int [fk]
-  control_no varchar [note: "도서번호"]
-  call_no varchar [note: "청구기호"]
-  class_no varchar [note: "분류기호"]
-  author_no varchar [note: "저자기호"]
-  volume varchar [note: "권차"]
-  copy varchar [note: "복본"]
-  kdc varchar
-  ddc varchar
-  attachment varchar
-  location_idx int
-  keyword varchar
-  created_at datetime [default: `now()`, note: "created time"]
-  modified_at datetime [default: `now()`, note: "modified time"]
-  note: "table 'books' contains book information"
+Ref: withdraw.member_idx - member.member_idx
+Table role_group {
+  role_idx INT [pk]
+  group_name VARCHAR(4) [not null]
+  note:"회원등급 그룹테이블입니다. 회원들은 회원등급 그룹으로 묶입니다."
 }
-Table location {
-  location_idx int [pk]
-  location_name varchar
+Table role_permission {
+  role_permission_idx INT [pk]
+  role_idx INT
+  permit_idx INT
+  note:"회원등급 권한 테이블입니다. 회원등급 권한은 다수의 권한을 가질 수 있습니다."
 }
-Table book_manage {
-  book_manage_id int [pk]
-  type varchar
-  description varchar
-  purchase_at datetime
-  created_at datetime
-}
-Table product {
-  product_id int [pk]
-  title varchar
-  author varchar
-  publisher varchar
-  pubdate date
-  isbn varchar
-  edtion varchar
-  volume varchar
-  series varchar
-  description varchar
-  price varchar
-  discount varchar
-  purchase_price varchar 
-  imgUrl varchar
-  thumbUrl varchar
-  created_at datetime [default: `now()`, note: "created time"]
-  modified_at datetime [default: `now()`, note: "modified time"]
-}
-Table borrow {
-  id int [pk]
-  user_id int
-  book_id int
-  created_at datetime
-  modifed_at datetime
-  recieved_at datetime
+Ref: role_group.role_idx - role_permission.role_idx
+Ref: role_permission.permit_idx < permission.permit_idx
+
+Table permission {
+  permit_idx INT [pk]
+  board_idx INT
+  notice_yn TINYINT [not null]
+  read_yn TINYINT [not null]
+  create_yn TINYINT [not null]
+  modify_yn TINYINT [not null]
+  delete_yn TINYINT [not null]
+  reply_yn TINYINT [not null]
+  note:"권한 테이블입니다. 특정 게시판이나 페이지의 특정권한을 체크합니다."
 }
 
+Table circulation {
+  circ_idx INT [pk]
+  circ_group VARCHAR(5) [not null]
+  max_borrow_count SMALLINT [not null]
+  borrow_period DATETIME
+  note:"대출 등급 테이블입니다. 최대 몇 권을 빌릴 수 있는지, 대출 기간을 설정할 수 있습니다."
+}
 
+Table acquisition {
+  acq_idx INT [pk]
+  acq_nm INT
+  acq_type VARCHAR(20)
+  dewey_idx INT
+  title VARCHAR(50) [not null]
+  series_title VARCHAR(50) [not null]
+  author VARCHAR(50) [not null]
+  publisher VARCHAR(50) [not null]
+  pubdate DATETIME
+  volume VARCHAR(4)
+  edition VARCHAR(10)
+  copy VARCHAR(4)
+  price INT
+  real_price INT
+  isbn VARCHAR(13) [not null]
+  page INT
+  country VARCHAR(10)
+  currency VARCHAR(5)
+  note:"수서 테이블입니다. 원부등록대장에 등록하기 전에 구입/기증받을 책들을 정리합니다. 자주 수정되므로 원본성이 없습니다."
+}
+Ref: acquisition.dewey_idx > dewey.dewey_idx
 
+Table dewey {
+  dewey_idx INT
+  dewey_number SMALLINT [not null]
+  dewey_name VARCHAR(4) [not null]
+  note:"도서 대분류 테이블입니다. ddc라고도 부릅니다."
+}
+
+Table analysis {
+  date DATETIME [pk]
+  dewey_idx INT
+  borrow_count INT [not null]
+  borrow_member_count INT [not null]
+  note:"도서대출 통계 테이블입니다."
+}
+Ref: analysis.dewey_idx < dewey.dewey_idx
+
+Table board {
+  board_idx INT [pk]
+  board_name VARCHAR(10) [not null]
+  note:"게시판 목록 테이블입니다. 게시판이나 페이지의 이름을 등록합니다. 권한테이블이 참조합니다."
+}
+Ref: board.board_idx - permission.board_idx
+
+Table common_code {
+  code_idx INT [pk]
+  code_nm INT [not null]
+  code_group INT
+  code_eng VARCHAR(20)
+  code_name VARCHAR(20) [not null]
+  use_yn TINYINT [default: `1`]
+  note:"공통코드 테이블입니다. 특정 테이블에서 참조해야 할 공통값이나 설정변수를 관리합니다."
+}

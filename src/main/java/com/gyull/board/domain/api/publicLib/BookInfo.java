@@ -1,7 +1,5 @@
 package com.gyull.board.domain.api.publicLib;
 
-import lombok.ToString;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;

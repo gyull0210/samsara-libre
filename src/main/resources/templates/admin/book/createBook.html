@@ -46,10 +46,50 @@ layout:decorate="~{layout/adminLayout}">
             </div>
           </div>
         </div>
+        <div class="p-4 text-sm font-semibold bg-white border border-transparent rounded-md shadow-md text-medium shadow-gray-200/80">
+          <div class="py-2 mb-4 text-base font-semibold border-b border-gray-300">
+            서지 정보 구분
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-col lg:flex-row gap-4">
+              <div class="flex items-center gap-4">
+                <label class="text-sm font-semibold">입수구분</label>
+                <select class="text-sm rounded-md border border-gray-300 shadow">
+                  <option value="">구입</option>
+                  <option value="">기증</option>
+                </select>
+              </div>
+              <div class="flex items-center gap-4">
+                <label class="text-sm font-semibold">이용대상</label>
+                <select class="text-sm rounded-md border border-gray-300 shadow">
+                  <option value="">일반</option>
+                </select>
+              </div>
+              <div class="flex items-center gap-4">
+                <label class="text-sm font-semibold">분류표구분</label>
+                <select class="text-sm rounded-md border border-gray-300 shadow">
+                  <option value="">KDC</option>
+                  <option value="">DDC</option>
+                </select>
+              </div>
+              <div class="flex items-center gap-4">
+                <label class="text-sm font-semibold">제어자료</label>
+                <select class="text-sm rounded-md border border-gray-300 shadow">
+                  <option value="">KMO</option>
+                  <option value="">EMO</option>
+                  <option value="">WMO</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
         <div x-data="{tabs: 0}" class="flex flex-col font-semibold">
           <div class="flex">
             <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 0 ? 'bg-white text-black' : 'bg-gray-400 text-white'" @click="tabs=0">기본정보</div>
-            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 1 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=1">추가정보</div>
+            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 1 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=1">상세정보</div>
+            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 2 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=2">관리정보</div>
+            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 3 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=3">책정보</div>
+            <div class="py-2 px-6 rounded-t-lg rounded-b-none text-sm shadow" :class="tabs === 4 ? 'bg-white text-black': 'bg-gray-400 text-white'" @click="tabs=4">부록정보</div>
           </div>     
         <div class="flex px-4 py-4 bg-white border border-transparent rounded-bl-md rounded-br-md rounded-tr-md shadow-md text-medium shadow-gray-200/80">
           <div>
@@ -76,137 +116,7 @@ layout:decorate="~{layout/adminLayout}">
                     <input id="uploadPhoto" class="hidden w-full px-4 py-2 border border-gray-400 rounded-md shadow" type="file" accept="image/webp, image/jpg, image/jpeg, image/png" @change="checkImage(event);">            
                   </div>
                   <!-- information -->
-                  <div class="">                   
-                    <!--ISBN-->
-                    <div class="mb-4">
-                      <label class="block text-sm">ISBN</label>
-                      <input id="isbn" name="isbn" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow" type="text">
-                    </div>
-                    <!--SET ISBN-->
-                    <div class="mb-4">
-                      <label class="block text-sm">SET ISBN</label>
-                      <input id="setIsbn" name="setIsbn" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow" type="text">
-                    </div>
-                    <!--총서명-->
-                    <div class="mb-4">
-                      <label class="block text-sm">총서명</label>
-                      <input id="seriesTitle" name="seriesTitle" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow" type="text">
-                    </div>                     
-                    <!-- 도서명 -->
-                    <div class="mb-4">
-                      <label class="block text-sm">도서명</label>
-                      <input id="title" name="title" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow" type="text">
-                    </div>
-                    <!--  -->
-                    <div class="mb-4">
-                      <label class="block text-sm">서명권차</label>
-                      <input class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow" type="text">
-                    </div>
-                    <div class="mb-4" aria-current="저자">
-                      <label class="block text-sm">저자</label>
-                      <input id="author" name="author" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text" >
-                    </div>
-                    <div class="mb-4" aria-current="발행처">
-                      <label class="block text-sm">발행처</label>
-                      <input class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                    </div>
-                    <div class="mb-4" aria-current="출판년도">
-                      <label class="block text-sm">출판년도</label>
-                      <input id="pubdate" name="pubdate" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                    </div>
-                    <div class="mb-4" aria-current="출판사">
-                      <label class="block text-sm">출판사</label>
-                      <input id="publisher" name="publisher" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                    </div>
-                    <div class="mb-4" aria-current="페이지">
-                      <label class="block text-sm">페이지</label>
-                      <input id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                    </div>
-                    <div class="mb-4" aria-current="크기">
-                      <label class="block text-sm">크기</label>
-                      <input id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                    </div>
-                    <div class="mb-4" aria-current="가격">
-                      <label class="block text-sm">가격</label>
-                      <input id="price" name="price" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                    </div>
-                    <div class="mb-4" aria-current="첨부자료">
-                      <label class="block text-sm">첨부자료</label>
-                      <input id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                    </div>                  
-                    <!--소장 정보-->
-                    <div class="mt-12 mb-4" aria-current="소장정보">
-                      <label class="block mb-4 font-semibold">소장정보</label>
-                      <div class="mb-4" aria-current="소장위치">
-                        <label class="block text-sm">소장위치</label>
-                        <select id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                          <option value="">자료실</option>
-                        </select>
-                      </div>
-                      <div class="mb-4" aria-current="반입구분">
-                        <label class="block text-sm">반입구분</label>
-                        <select id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">
-                          <option value="">구매</option>
-                          <option value="">기증</option>
-                        </select>
-                      </div>
-                      <div class="mb-4" aria-current="도서상태">
-                        <label class="block text-sm">도서상태</label>
-                        <select id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow">
-                          <option value="">대출가능</option>
-                          <option value="">대출불가</option>
-                        </select>
-                      </div>
-                      <div class="mb-8" aria-current="UID">
-                        <label class="block text-sm">UID</label>
-                        <input class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">                         
-                      </div>
-                      <div class="mb-4" aria-current="청구기호">
-                        <label class="block mb-4 font-semibold">청구기호</label>
-                        <div class="flex flex-wrap items-center gap-4 mb-4">
-                          <!-- 별치 -->
-                          <div class="mb-4" aria-current="별치기호">
-                            <label class="block text-sm">별치기호</label>
-                            <input id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">                         
-                          </div>
-                          <!-- 분류기호 -->
-                          <div class="mb-4" aria-current="분류기호">
-                            <label class="block text-sm">분류기호</label>
-                            <input id="classified" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">                         
-                          </div>
-                          <!-- 저자기호 -->
-                          <div class="mb-4" aria-current="저자기호">
-                            <label class="block text-sm">저자기호</label>
-                            <input id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">                         
-                          </div>
-                          <!-- 청구권차 -->
-                          <div class="mb-4" aria-current="청구권차">
-                            <label class="block text-sm">청구권차</label>
-                            <input id="volume" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">                         
-                          </div>
-                          <!-- 복본 -->
-                          <div class="mb-4" aria-current="복본">
-                            <label class="block text-sm">복본</label>
-                            <input id="copy" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">                         
-                          </div>
-                          <!-- 등록번호 -->
-                          <div class="mb-4" aria-current="등록번호">
-                            <label class="block text-sm">등록번호</label>
-                            <input id="" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" type="text">                         
-                          </div>
-                        </div>                    
-                      </div>
-                      <!-- 추가정보 -->
-                      <div class="mb-4" aria-current="설명">
-                        <label class="block">설명</label>
-                        <textarea id="description" class="w-full px-4 py-2 text-sm border border-gray-300 rounded-md shadow" rows="5" type="text"></textarea>
-                      </div>
-                    </div>                    
-                    <div class="relative flex justify-between">
-                      <button class="px-4 py-2 bg-gray-100 border border-gray-300 rounded" onClick="history.go(-1);">취소</button>
-                      <button class="px-4 py-2 text-white bg-gray-600 rounded" @click="createBook();">저장</button>
-                    </div>  
-                  </div>
+                  <div class=""></div>
                 </div> 
               </div>
             </form>
