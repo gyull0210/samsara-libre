@@ -18,12 +18,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Borrow {
-  private long brrIdx;
-  private String userId;
-  private String bookId;
-  private LocalDateTime borrowStart;
-  private LocalDateTime borrowEnd;
-  private int overdueCount;
-  private String checkIn;
-  private LocalDateTime checkIndDate;
+  private Integer borrowIdx;
+  private Integer memberIdx;
+  private LocalDateTime borrowDate;
 }

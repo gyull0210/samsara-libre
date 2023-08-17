@@ -11,7 +11,7 @@ Project Book_Management {
 Table ledger {
   ledger_idx int [pk]
   state varchar(10) [note:"해당 원부에 등록된 도서의 작업상태"]
-  ledger_nm int [note:"원부번호는 해당년도에 1번부터 순차적으로 부여됨"]
+  ledger_no int [note:"원부번호는 해당년도에 1번부터 순차적으로 부여됨"]
   ledger_year varchar(4) [note:"원부년도는 해당년도 4자리"]
   created_at datetime [default:`now()`]
   modified_at datetime [default:`now()`]

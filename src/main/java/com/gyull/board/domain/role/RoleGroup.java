@@ -5,9 +5,9 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class Role {
+public class RoleGroup {
   
-  private String role_idx;
+  private String roleIdx;
   private String role_code;
-  private String roleName;
+  private String groupName;
 }

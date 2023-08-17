@@ -2,6 +2,8 @@ package com.gyull.board.domain.book;
 
 import java.time.LocalDateTime;
 
+import com.gyull.board.domain.location.Location;
+
 import lombok.Getter;
 import lombok.ToString;
 
@@ -19,7 +21,7 @@ import lombok.ToString;
 @ToString
 public class Book {
   
-  private long book_idx;
+  private Integer bookIdx;
   private String book_num;
   private String book_title;
   private String author;
@@ -36,4 +38,6 @@ public class Book {
   private LocalDateTime borrowDate;
   private LocalDateTime borrowEndDate;
   private String extra;
+
+  private Location location;
 }
